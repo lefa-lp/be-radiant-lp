@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be Radiant coaching | @naoki88_m</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       カラーパレット（C: ナチュラルエレガンス）
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    :root {
+      --pink:       #A0745A;
+      --pink-light: #C49880;
+      --pink-pale:  #FAF5F0;
+      --pink-border:#E8D5C4;
+      --gold:       #B8864E;
+      --gold-pale:  #fdf5eb;
+      --text-dark:  #222222;
+      --text-mid:   #444444;
+      --text-light: #777777;
+      --white:      #ffffff;
+      --bg-body:    #f2e8de;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       フォント設定（しっぽり明朝 × M PLUS Rounded 1c）
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .lp {
+      font-family: 'M PLUS Rounded 1c', 'Hiragino Sans', sans-serif;
+    }
+    h1, h2, h3, h4, .lp-logo, .sec-title, .price-main, .price, .big {
+      font-family: 'Shippori Mincho', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'M PLUS Rounded 1c', 'Hiragino Sans', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-dark);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ━━ LP本体ラッパー ━━ */
+    .lp {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow: 0 0 60px rgba(160,116,90,.15);
+    }
+    @media (min-width: 768px) {
+      .lp { max-width: 780px; }
+    }
+    @media (min-width: 1024px) {
+      .lp { max-width: 100%; box-shadow: none; }
+    }
+
+    /* ━━ PC内側コンテンツ幅 ━━ */
+    .sec-inner {
+      width: 100%;
+    }
+    @media (min-width: 1024px) {
+      .sec-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       アニメーション
+    ━━━━━━━━━━━━━━━━━━ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.03); }
+    }
+    @keyframes floatBtn {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-4px); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       ヘッダー
+    ━━━━━━━━━━━━━━━━━━ */
+    .lp-header {
+      background: var(--pink);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      border-bottom: 3px solid var(--pink-light);
+      transition: box-shadow .3s;
+    }
+    .lp-header.scrolled { box-shadow: 0 4px 20px rgba(160,116,90,.3); }
+    .lp-logo {
+      font-size: 16px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: .05em;
+      line-height: 1.3;
+    }
+    .lp-logo span { font-size: 11px; color: rgba(255,255,255,.75); display: block; font-weight: 500; }
+
+    /* SP用CTAボタン（ヘッダー右） */
+    .header-sp-cta .sp-dm-btn {
+      background: #fff;
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 800;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(160,116,90,.3);
+    }
+
+    /* PC用ナビ（768px以上で表示） */
+    .header-nav {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .header-nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .header-nav a {
+        color: rgba(255,255,255,.85);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: color .2s;
+      }
+      .header-nav a:hover { color: #fff; }
+      .header-sp-cta .sp-dm-btn { font-size: 12px; padding: 8px 18px; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       セクション共通
+    ━━━━━━━━━━━━━━━━━━ */
+    .sec { padding: 56px 20px; }
+    .sec-white     { background: var(--white); }
+    .sec-pale      { background: var(--pink-pale); }
+    .sec-pink      { background: linear-gradient(135deg, var(--pink) 0%, var(--pink-light) 100%); }
+
+    @media (min-width: 768px) {
+      .sec { padding: 72px 32px; }
+    }
+    @media (min-width: 1024px) {
+      .sec { padding: 88px 48px; }
+    }
+
+    /* ━━ 見出し ━━ */
+    .sec-label {
+      display: inline-block;
+      background: var(--pink-pale);
+      color: var(--pink);
+      border: 1.5px solid var(--pink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .sec-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--text-dark);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .sec-title .accent { color: var(--pink); }
+    .sec-title .gold   { color: var(--gold); }
+    .sec-body { font-size: 14px; color: var(--text-mid); line-height: 1.8; }
+
+    @media (min-width: 768px) {
+      .sec-title { font-size: 26px; }
+      .sec-body  { font-size: 15px; }
+    }
+    @media (min-width: 1024px) {
+      .sec-title { font-size: 30px; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       ボタン
+    ━━━━━━━━━━━━━━━━━━ */
+    .btn-cta {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-light) 50%, var(--pink) 100%);
+      background-size: 200% auto;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      padding: 20px 32px;
+      border-radius: 50px;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(160,116,90,.45);
+      text-decoration: none;
+      position: relative;
+      line-height: 1.3;
+      animation: pulse 2.4s ease-in-out infinite;
+      transition: background-position .4s, transform .2s, box-shadow .2s;
+    }
+    .btn-cta:hover {
+      background-position: right center;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(160,116,90,.55);
+      animation: none;
+    }
+    .btn-cta::after {
+      content: '▶';
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+    }
+    .btn-cta-white {
+      background: #fff;
+      color: var(--pink);
+      box-shadow: 0 6px 24px rgba(0,0,0,.18);
+      animation: floatBtn 2.4s ease-in-out infinite;
+    }
+    .btn-cta-white:hover { animation: none; }
+
+    .btn-sub { text-align: center; font-size: 12px; color: var(--text-light); margin-top: 10px; }
+
+    @media (min-width: 768px) {
+      .btn-cta { font-size: 18px; max-width: 480px; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       区切り矢印
+    ━━━━━━━━━━━━━━━━━━ */
+    .arrow-divider {
+      text-align: center;
+      font-size: 28px;
+      color: var(--pink);
+      padding: 8px 0;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       画像プレースホルダー
+    ━━━━━━━━━━━━━━━━━━ */
+    .img-ph {
+      background: var(--pink-pale);
+      border: 2px dashed var(--pink);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--pink);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      padding: 10px;
+      line-height: 1.5;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       HERO
+    ━━━━━━━━━━━━━━━━━━ */
+    #hero {
+      background: #fff;
+      padding: 0;
+      text-align: center;
+    }
+    #hero .sec-inner {
+      padding: 0;
+    }
+    .hero-cta-wrap {
+      padding: 28px 20px 36px;
+      background: #fff;
+    }
+    #hero .eyebrow {
+      display: inline-block;
+      background: var(--pink);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      padding: 5px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    #hero .program-name {
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--pink);
+      border: 2px solid var(--pink);
+      border-radius: 8px;
+      padding: 6px 24px;
+      margin-bottom: 18px;
+      letter-spacing: .12em;
+    }
+    #hero h1 {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--text-dark);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    #hero h1 .accent { color: var(--pink); }
+    #hero .sub {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 768px) {
+      #hero { padding: 64px 32px 56px; }
+      #hero h1 { font-size: 30px; }
+      #hero .sub { font-size: 15px; }
+      #hero .program-name { font-size: 22px; }
+    }
+    @media (min-width: 768px) {
+      #hero {
+        padding: 0;
+        background: #fff;
+      }
+      #hero .sec-inner {
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      #hero .sec-inner > div {
+        width: 100%;
+      }
+      #hero picture {
+        display: block;
+        width: 100%;
+      }
+      #hero picture img {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        display: block;
+      }
+      .hero-cta-wrap {
+        padding: 32px 48px 40px;
+        text-align: center;
+        background: #fff;
+      }
+    }
+    @media (min-width: 1024px) {
+      #hero h1 { font-size: 36px; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       PROBLEM
+    ━━━━━━━━━━━━━━━━━━ */
+    @media (min-width: 768px) {
+      #problem { padding: 48px 0; }
+      .problem-img {
+        max-width: 720px;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+
+    .problem-list {
+      list-style: none;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .problem-list li {
+      background: var(--pink-pale);
+      border-left: 4px solid var(--pink);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    .problem-list li::before { content: '✓ '; color: var(--pink); }
+
+    @media (min-width: 1024px) {
+      .problem-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       SOLUTION
+    ━━━━━━━━━━━━━━━━━━ */
+    .solution-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 20px;
+      margin-top: 24px;
+      box-shadow: 0 4px 24px rgba(160,116,90,.12);
+      text-align: center;
+    }
+    .solution-box .big {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--pink);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .format-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .format-badge {
+      background: var(--pink-pale);
+      border: 1.5px solid var(--pink);
+      color: var(--pink);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       ABOUT（講師）
+    ━━━━━━━━━━━━━━━━━━ */
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      margin-top: 24px;
+      background: var(--pink-pale);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .profile-photo {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .profile-card .info {
+      padding: 16px 20px 20px;
+    }
+    .profile-card .info h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+    .profile-card .info p  { font-size: 13px; color: var(--text-mid); line-height: 1.7; }
+
+    .credentials { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .credentials li {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-dark);
+      padding-left: 20px;
+      position: relative;
+    }
+    .credentials li::before {
+      content: '◆';
+      color: var(--pink);
+      position: absolute;
+      left: 0;
+      font-size: 10px;
+      top: 3px;
+    }
+
+    @media (min-width: 1024px) {
+      .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; margin-top: 32px; }
+      .profile-card { margin-top: 0; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       PROGRAM（料金・コース内容）
+    ━━━━━━━━━━━━━━━━━━ */
+    .price-wrap {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .price-card-trial {
+      background: var(--white);
+      border-radius: 14px;
+      border: 2px solid var(--pink);
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(160,116,90,.1);
+    }
+    .price-card-trial .badge {
+      display: inline-block;
+      background: var(--pink);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      letter-spacing: .08em;
+    }
+    .price-card-trial h4 { font-size: 17px; font-weight: 800; color: var(--text-dark); margin-bottom: 10px; }
+    .price-card-trial .price { font-size: 36px; font-weight: 900; color: var(--pink); }
+    .price-card-trial .price-note { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+    .price-card-main {
+      background: var(--white);
+      border-radius: 14px;
+      border: 2px solid var(--gold);
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(200,149,42,.12);
+    }
+    .price-card-main .badge-gold {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: .08em;
+    }
+    .price-card-main h4 { font-size: 20px; font-weight: 900; text-align: center; margin-bottom: 14px; }
+    .price-card-main .price-main { font-size: 32px; font-weight: 900; color: var(--gold); text-align: center; margin-bottom: 4px; }
+    .price-card-main .price-note { font-size: 12px; color: var(--text-light); text-align: center; margin-bottom: 20px; }
+
+    .plan-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .plan-table th {
+      background: var(--pink-pale);
+      color: var(--pink);
+      font-weight: 700;
+      padding: 10px 12px;
+      border: 1px solid var(--pink-border);
+      text-align: left;
+    }
+    .plan-table td {
+      padding: 10px 12px;
+      border: 1px solid var(--pink-border);
+      color: var(--text-mid);
+      vertical-align: top;
+    }
+    .plan-table tr:nth-child(even) td { background: #fffbfc; }
+
+    /* ── SESSION PHOTOS ── */
+    .session-photos {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .session-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: center 30%;
+      border-radius: 10px;
+    }
+    @media (min-width: 768px) {
+      .session-photos { flex-direction: row; }
+      .session-photo { height: 180px; flex: 1; }
+    }
+
+    /* ── ZOOM GRID ── */
+    .zoom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .zoom-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.1);
+    }
+    .zoom-col-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      aspect-ratio: 3/4;
+    }
+    .zoom-img-half {
+      width: 100%;
+      flex: 1;
+      min-height: 0;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.1);
+    }
+    @media (min-width: 768px) {
+      .zoom-grid { gap: 16px; }
+      .zoom-img { border-radius: 16px; aspect-ratio: 4/5; }
+      .zoom-col-stack { gap: 16px; aspect-ratio: 4/5; }
+      .zoom-img-half { border-radius: 16px; }
+    }
+
+    /* ── OUTCOME ── */
+    .ba-img { margin-bottom: 8px; }
+    @media (min-width: 768px) {
+      .ba-img { max-width: 900px; margin: 0 auto 8px; display: block; }
+      .outcome-img { max-width: 900px; margin: 40px auto 0; display: block; }
+    }
+
+    .ba-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .ba-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .ba-before, .ba-after {
+      flex: 1;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+      position: relative;
+    }
+    .ba-before {
+      background: #f5f5f5;
+      color: var(--text-mid);
+    }
+    .ba-after {
+      background: var(--pink-pale);
+      color: var(--pink);
+      border: 1.5px solid var(--pink-border);
+    }
+    .ba-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+    .ba-tag.before { background: #ddd; color: #666; }
+    .ba-tag.after  { background: var(--pink); color: #fff; }
+    .ba-arrow {
+      font-size: 20px;
+      color: var(--pink);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .outcome-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .outcome-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+      border-left: 4px solid var(--pink);
+    }
+    .outcome-num {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--pink);
+      opacity: .3;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 40px;
+    }
+    .outcome-text {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.7;
+      color: var(--text-dark);
+    }
+    @media (min-width: 1024px) {
+      .ba-grid { gap: 16px; }
+      .ba-card { padding: 20px 24px; }
+      .ba-before, .ba-after { font-size: 14px; padding: 16px 18px; }
+      .ba-arrow { font-size: 24px; }
+      .outcome-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .outcome-card:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; }
+      .outcome-num { font-size: 36px; width: 50px; }
+      .outcome-text { font-size: 15px; }
+    }
+
+    .effect-list { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .effect-list li {
+      list-style: none;
+      font-size: 14px;
+      color: var(--text-dark);
+      padding: 12px 16px;
+      background: var(--white);
+      border-radius: 8px;
+      border-left: 4px solid var(--gold);
+    }
+    .effect-list li::before { content: '✦ '; color: var(--gold); font-size: 12px; }
+
+    @media (min-width: 1024px) {
+      .price-wrap { flex-direction: row; align-items: flex-start; }
+      .price-card-trial { flex: 1; }
+      .price-card-main  { flex: 2; }
+      .effect-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       RESULTS（受講生の声）
+    ━━━━━━━━━━━━━━━━━━ */
+    .result-list { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+    .result-card {
+      background: var(--pink-pale);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--pink-border);
+    }
+    .result-card .meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .result-card .avatar-sm {
+      width: 44px;
+      height: 44px;
+      background: var(--pink-border);
+      border: 2px solid var(--pink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--pink);
+      flex-shrink: 0;
+    }
+    .result-card .name { font-size: 13px; font-weight: 700; }
+    .result-card .tag {
+      font-size: 11px;
+      background: var(--pink);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+    .result-card .voice { font-size: 13px; color: var(--text-mid); line-height: 1.75; }
+
+    @media (min-width: 768px) {
+      .result-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    }
+    @media (min-width: 1024px) {
+      .result-list { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       FAQ
+    ━━━━━━━━━━━━━━━━━━ */
+    .faq-list { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1.5px solid var(--pink-border); border-radius: 10px; overflow: hidden; }
+    .faq-q {
+      background: var(--pink-pale);
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--pink);
+      cursor: pointer;
+    }
+    .faq-q::before { content: 'Q. '; }
+    .faq-a { padding: 14px 16px; font-size: 13px; color: var(--text-mid); line-height: 1.75; }
+    .faq-a::before { content: 'A. '; font-weight: 700; color: var(--text-dark); }
+
+    @media (min-width: 1024px) {
+      .faq-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       FINAL CTA
+    ━━━━━━━━━━━━━━━━━━ */
+    #final-cta {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-light) 100%);
+      padding: 64px 20px;
+      text-align: center;
+    }
+    #final-cta h2 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    #final-cta p { font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.85; margin-bottom: 32px; }
+
+    @media (min-width: 768px) {
+      #final-cta { padding: 80px 32px; }
+      #final-cta h2 { font-size: 28px; }
+    }
+    @media (min-width: 1024px) {
+      #final-cta { padding: 100px 48px; }
+      #final-cta h2 { font-size: 34px; }
+      #final-cta p  { font-size: 16px; }
+      .btn-cta { max-width: 480px; font-size: 19px; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       FOOTER
+    ━━━━━━━━━━━━━━━━━━ */
+    footer {
+      background: #1a1a1a;
+      padding: 36px 20px 20px;
+      text-align: center;
+    }
+    footer .footer-logo { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 14px; }
+    footer .footer-logo span { font-size: 11px; color: #999; display: block; font-weight: 400; margin-top: 2px; }
+    footer .footer-links { margin-bottom: 14px; }
+    footer .footer-links a { font-size: 12px; color: #aaa; text-decoration: none; margin: 0 10px; }
+    footer .footer-links a:hover { color: #fff; }
+    footer .copy { font-size: 11px; color: #555; }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       STICKY CTA（スマホ下部）
+    ━━━━━━━━━━━━━━━━━━ */
+    .sticky-cta {
+      position: sticky;
+      bottom: 0;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(8px);
+      padding: 10px 16px;
+      border-top: 2px solid var(--pink-border);
+      z-index: 150;
+    }
+    .sticky-cta .btn-cta { font-size: 15px; padding: 14px 24px; animation: none; }
+    @media (min-width: 1024px) {
+      .sticky-cta { display: none; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       ワイヤーフレームノート
+    ━━━━━━━━━━━━━━━━━━ */
+    /* 切り替えパネル用スタイル削除済み */
+    .wf-note {
+      background: var(--gold-pale);
+      border: 1px dashed var(--gold);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #7a5c00;
+      margin: 12px 0 0;
+      text-align: center;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━
+       MID CTA セクション
+    ━━━━━━━━━━━━━━━━━━ */
+    #mid-cta { text-align: center; }
+  </style>
+</head>
+<body>
+<div class="lp">
+
+  <!-- ━━━━━━━━━━━━━ HEADER ━━━━━━━━━━━━━ -->
+  <header class="lp-header" id="lpHeader">
+    <div class="lp-logo">
+      Be Radiant coaching
+    </div>
+    <nav class="header-nav">
+      <a href="#program">料金・内容</a>
+      <a href="#results">受講生の声</a>
+      <a href="#about">講師紹介</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <div class="header-sp-cta">
+      <a href="#final-cta" class="sp-dm-btn">初回体験DMへ</a>
+    </div>
+  </header>
+
+  <!-- ━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━ -->
+  <section id="hero">
+    <div class="sec-inner">
+      <div style="width:100%; text-align:center;">
+        <picture>
+          <source media="(min-width: 768px)" srcset="naoki_hero_pc.png">
+          <img src="naoki_hero.png" alt="松尾尚輝 マインドセットコーチ" style="width:100%; display:block; margin:0 auto;">
+        </picture>
+        <div class="hero-cta-wrap">
+          <a href="#final-cta" class="btn-cta">初回体験はDMへ</a>
+          <p class="btn-sub" style="margin-top:8px;">※ まずはInstagram @naoki88_m へDMください</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ PROBLEM ━━━━━━━━━━━━━ -->
+  <section id="problem" class="sec" style="padding:0; background:var(--white);">
+    <img src="naoki_problem.png" alt="こんな悩みはありませんか？" class="problem-img" style="width:100%; display:block;">
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ SOLUTION ━━━━━━━━━━━━━ -->
+  <section id="solution" class="sec sec-pale">
+    <div class="sec-inner">
+      <span class="sec-label reveal">Be Radiant coaching とは</span>
+      <h2 class="sec-title reveal">
+        <span class="accent">「在り方」</span>から変えることで、<br>
+        身体も人生も丸ごと輝かせる<br>
+        コーチングプログラム
+      </h2>
+      <div class="solution-box reveal">
+        <p class="big">Be Radiant = 輝き続ける</p>
+        <p class="sec-body">
+          頑張りすぎて「自分を後回し」にしてきた女性が、<br>
+          思い込みを手放し、<strong>本来の自分らしい人生</strong>を<br>
+          取り戻すためのマインドセットコーチングです。
+        </p>
+        <!-- 実績バッジ -->
+        <div style="display:flex; gap:12px; justify-content:center; margin:24px 0; flex-wrap:wrap;">
+          <div style="text-align:center; background:var(--pink-pale); border-radius:50%; width:88px; height:88px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:2px solid var(--pink);">
+            <div style="font-size:11px; color:var(--pink); font-weight:800; line-height:1.2;">オンライン限定</div>
+            <div style="font-size:10px; color:var(--text-mid);">セミナー</div>
+          </div>
+          <div style="text-align:center; background:var(--pink-pale); border-radius:50%; width:88px; height:88px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:2px solid var(--pink);">
+            <div style="font-size:14px; font-weight:900; color:var(--pink); font-family:'Shippori Mincho',serif;">1,000名</div>
+            <div style="font-size:9px; color:var(--text-mid);">累計受講者数以上</div>
+          </div>
+          <div style="text-align:center; background:var(--pink-pale); border-radius:50%; width:88px; height:88px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:2px solid var(--pink);">
+            <div style="font-size:11px; color:var(--pink); font-weight:800; line-height:1.2;">人生が変わった</div>
+            <div style="font-size:10px; color:var(--text-mid);">という声多数！</div>
+          </div>
+        </div>
+        <div class="format-row">
+          <span class="format-badge">Zoom完結</span>
+          <span class="format-badge">オンライン限定</span>
+          <span class="format-badge">12週間</span>
+          <span class="format-badge">振り返りシート付き</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ ABOUT ━━━━━━━━━━━━━ -->
+  <section id="about" class="sec sec-white">
+    <div class="sec-inner">
+      <span class="sec-label reveal">講師紹介</span>
+      <h2 class="sec-title reveal"><span class="accent">松尾尚輝</span> について</h2>
+      <div class="about-grid reveal">
+        <div class="profile-card">
+          <img src="naoki_profile.png" alt="松尾尚輝" class="profile-photo">
+          <div class="info" style="margin-top:16px;">
+            <h3>松尾尚輝</h3>
+            <p>マインドセットコーチ・セミナー講師。多くの女性が自分らしい人生を歩めるようサポートしている。</p>
+          </div>
+        </div>
+        <div>
+          <ul class="credentials">
+            <li>マインドセットコーチ・セミナー講師</li>
+            <li>累計受講者数 1,000名以上</li>
+            <li>Be Radiant coaching 主宰</li>
+            <li>Instagram @naoki88_m にて「身体×在り方」を発信</li>
+            <li>オンライン限定セミナーを定期開催</li>
+            <li>Zoom完結・全国対応</li>
+          </ul>
+          <div class="session-photos">
+            <img src="naoki_photo1.jpg" alt="セミナー風景" class="session-photo">
+            <img src="naoki_session2.jpg" alt="コーチングシーン" class="session-photo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ PROGRAM ━━━━━━━━━━━━━ -->
+  <section id="program" class="sec sec-pale">
+    <div class="sec-inner">
+      <span class="sec-label reveal">料金表・プログラム内容</span>
+      <h2 class="sec-title reveal">
+        まずは<span class="accent">初回体験</span>から。<br>
+        本気で変わりたい方へ<span class="gold">本コース</span>があります。
+      </h2>
+
+      <div class="price-wrap reveal">
+        <!-- 初回体験 -->
+        <div class="price-card-trial">
+          <span class="badge">STEP 1｜まずはここから</span>
+          <h4>初回体験セッション</h4>
+          <div class="price">¥2,500</div>
+          <p class="price-note">約60分 ／ Zoom</p>
+          <p class="sec-body" style="margin-top:14px;">
+            松尾尚輝 と直接話して、あなたの現状・課題・目指したい姿を整理します。コーチングが合うか確かめてから進められます。
+          </p>
+        </div>
+
+        <!-- 本コース -->
+        <div class="price-card-main">
+          <div style="text-align:center; margin-bottom:8px;">
+            <span class="badge-gold">STEP 2｜本コース</span>
+          </div>
+          <h4>Be Radiant coaching</h4>
+          <div class="price-main">¥550,000 <span style="font-size:14px; font-weight:500;">（税込）</span></div>
+          <p class="price-note">12週間 ／ Zoom完結</p>
+          <table class="plan-table">
+            <thead>
+              <tr><th>内容</th><th>回数・詳細</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>月1回 個別面談</td><td>全6回（約60〜90分 ／ Zoom）</td></tr>
+              <tr><td>月2回 コーチングセッション</td><td>全12回（集中サポート）</td></tr>
+              <tr><td>振り返りシート</td><td>毎セッション後に記録・提出</td></tr>
+              <tr><td>コミュニティ参加</td><td>専用コミュニティ内で講義・情報共有</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:12px; color:#999; margin-top:10px;">※ 面談日時はZoom ／ 講義日時はコミュニティ内に掲示</p>
+        </div>
+      </div>
+
+      <p class="wf-note" style="margin-top:24px;">※ コース内容・回数は変更になる場合があります。最新情報はDM・LINE でご確認ください。</p>
+    </div>
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ OUTCOME ━━━━━━━━━━━━━ -->
+  <section id="outcome" class="sec sec-pale">
+    <div class="sec-inner">
+      <span class="sec-label reveal">受講後の変化</span>
+      <h2 class="sec-title reveal">
+        Be Radiant coaching を受けたら、<br>
+        <span class="accent">あなたはこう変わります</span>
+      </h2>
+      <p class="sec-body reveal" style="text-align:center; margin-bottom:32px;">
+        これは単なる「やる気アップ」ではありません。<br>
+        思い込みと在り方が変わることで、日常が丸ごと変わります。
+      </p>
+
+      <!-- Before → After 画像 -->
+      <img src="naoki_ba.png" alt="Before After 変化の例" class="ba-img reveal" style="width:100%; display:block; border-radius:16px;">
+
+      <!-- 成果まとめ -->
+      <h3 class="reveal" style="font-size:18px; font-weight:800; text-align:center; margin:48px 0 20px;">
+        このコースで<span style="color:var(--pink);">得られる5つの成果</span>
+      </h3>
+      <img src="naoki_outcome.png" alt="得られる5つの成果" class="outcome-img reveal" style="width:100%; display:block; border-radius:16px;">
+
+    </div>
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ RESULTS ━━━━━━━━━━━━━ -->
+  <section id="results" class="sec sec-white">
+    <div class="sec-inner">
+      <span class="sec-label reveal">受講生の声</span>
+      <h2 class="sec-title reveal">
+        累計<span class="accent">1,000名以上</span>の女性が<br>
+        <span class="gold">人生を取り戻しました</span>
+      </h2>
+      <div class="zoom-grid reveal">
+        <div class="zoom-col-stack">
+          <img src="naoki_zoom1a.png" alt="セッション写真1" class="zoom-img-half">
+          <img src="naoki_zoom1b.png" alt="セッション写真2" class="zoom-img-half">
+        </div>
+        <img src="naoki_zoom2.png" alt="受講生とのセッション2" class="zoom-img">
+        <img src="naoki_zoom3.png" alt="受講生とのセッション3" class="zoom-img">
+      </div>
+      <div class="result-list">
+        <div class="result-card reveal">
+          <div class="meta">
+            <div class="avatar-sm">写真</div>
+            <div class="name">Aさん（30代・会社員）</div>
+            <span class="tag">自己否定が消えた</span>
+          </div>
+          <p class="voice">「頑張っても頑張っても自分を責め続けていました。松尾尚輝 さんのセッションで思い込みに気づいてから、自然と自分を認められるようになり、毎日が驚くほど楽になりました。」</p>
+        </div>
+        <div class="result-card reveal">
+          <div class="meta">
+            <div class="avatar-sm">写真</div>
+            <div class="name">Bさん（20代・主婦）</div>
+            <span class="tag">本音で生きられるように</span>
+          </div>
+          <p class="voice">「いつも人の目を気にして、本音を押し込めていた私が変わりました。12週間で『自分はこう生きていい』と思えるようになり、行動がどんどん変わっていきました。」</p>
+        </div>
+        <div class="result-card reveal">
+          <div class="meta">
+            <div class="avatar-sm">写真</div>
+            <div class="name">Cさん（40代・自営業）</div>
+            <span class="tag">理想の未来が描けた</span>
+          </div>
+          <p class="voice">「ずっと将来が怖くて動けなかったのに、マインドセットが変わったら理想の未来がクリアに見えてきました。Be Radiant coaching は人生そのものを変えるプログラムです。」</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ MID CTA ━━━━━━━━━━━━━ -->
+  <section id="mid-cta" class="sec sec-pale">
+    <div class="sec-inner reveal">
+      <h2 class="sec-title">まずは<span class="accent">初回体験（¥2,500）</span>から<br>自分を変える第一歩を踏み出そう</h2>
+      <p class="sec-body" style="margin-bottom:28px;">
+        セッションを体験してから、本コースへ進むかどうかを決められます。<br>
+        「人生を変えたい」という気持ちがあれば、今すぐDMへ。
+      </p>
+      <a href="#final-cta" class="btn-cta">初回体験のお申し込みはこちら</a>
+      <p class="btn-sub">※ Instagram @naoki88_m へDMください</p>
+    </div>
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ FAQ ━━━━━━━━━━━━━ -->
+  <section id="faq" class="sec sec-white">
+    <div class="sec-inner">
+      <span class="sec-label reveal">よくある質問</span>
+      <h2 class="sec-title reveal">申し込み前の<span class="accent">疑問</span>を解決</h2>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-q">Be Radiant coaching はどんな人に向いていますか？</div>
+          <div class="faq-a">頑張りすぎて疲れている、自己否定が多い、本音で生きられていないと感じている女性に向いています。「人生をもっと自由にしたい」という気持ちがあれば、まず初回体験からどうぞ。</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">オンライン（Zoom）のみですか？</div>
+          <div class="faq-a">はい、全てZoomで行います。全国どこからでもご参加いただけます。日時はご相談の上決定します。</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">初回体験の後、本コースに強制的に誘導されますか？</div>
+          <div class="faq-a">いいえ、初回体験後に本コースへの参加は任意です。体験してみて「合わない」と感じた場合は断っていただいて構いません。</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q">本コースの支払い・分割はできますか？</div>
+          <div class="faq-a">お支払い方法・分割については個別にご相談ください。DMまたは初回体験セッション時にお気軽にお申し付けください。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="arrow-divider">▼</div>
+
+  <!-- ━━━━━━━━━━━━━ FINAL CTA ━━━━━━━━━━━━━ -->
+  <section id="final-cta">
+    <div class="sec-inner reveal">
+      <h2>
+        頑張りすぎる毎日から抜け出して、<br>
+        本来の自分を取り戻そう。
+      </h2>
+      <p>
+        あなたの人生は、もっと自由でいい。<br>
+        思い込みを手放し、理想の未来へ進む<br>
+        最初の一歩をここから踏み出してください。
+      </p>
+      <a href="#" class="btn-cta btn-cta-white">初回体験のお申し込み</a>
+      <p class="btn-sub" style="color:rgba(255,255,255,.7);">まずはお気軽にDMへ ✉</p>
+      <div class="img-ph" style="height:90px; margin-top:24px; background:rgba(255,255,255,.2); border-color:rgba(255,255,255,.5); color:#fff;">
+        [ Instagram DM ボタン or LINE 登録ボタン ]
+      </div>
+      <p style="font-size:13px; color:rgba(255,255,255,.75); margin-top:16px;">
+        Instagram: <strong style="color:#fff;">@naoki88_m</strong> へDM
+      </p>
+    </div>
+  </section>
+
+  <!-- ━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━ -->
+  <footer>
+    <div class="footer-logo">
+      Be Radiant coaching
+      <span>by @naoki88_m</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">特定商取引法に基づく表記</a>
+    </div>
+    <p class="copy">Copyright &copy; 2026 naoki88_m All Rights Reserved.</p>
+  </footer>
+
+  <!-- ━━━━━━━━━━━━━ STICKY CTA（SP用） ━━━━━━━━━━━━━ -->
+  <div class="sticky-cta">
+    <a href="#final-cta" class="btn-cta">初回体験はDMへ</a>
+  </div>
+
+</div><!-- /.lp -->
+
+<script>
+  /* ── 共通 ── */
+  const lp = document.querySelector('.lp');
+
+  /* ── スクロールでヘッダーに影 ── */
+  const header = document.getElementById('lpHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* ── スクロールリビール ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+</script>
+</body>
+</html>
